@@ -1,3 +1,5 @@
 .idea/
 *.pyc
 *.tar.gz
+.pytest_cache
+__pycache__
