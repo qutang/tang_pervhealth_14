@@ -1,0 +1,14 @@
+{"DW": {
+      "mean": {
+               "hander": "mean", 
+               "apply": ["rawx", "rawy", "rawz"],
+               "paras": "None"
+               }
+      },
+      "peakrate": {
+                   "handler": "std",
+                   "apply": ["rawx", "rawy", "rawz"],
+                   "paras": {"sigma":5}
+      },
+"NDW": "DW"
+}

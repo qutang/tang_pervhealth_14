@@ -1,0 +1,916 @@
+Scoring: overall f1 score
+
+
+iteration time: 20
+
+results:
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+1     False   entropy      None         auto                 1                  3  0.660323          360     BW        1          1797
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+2     False      gini      None         auto                 1                  7  0.736708          360    BFW        1          1078
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+3     False   entropy      None         auto                 4                  5  0.631161          360     DW        1           930
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+4     False   entropy      None         auto                 4                  5  0.687467          360    NDW        1           867
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+5     False   entropy      None         auto                 5                  4  0.643501          320     BW        1          2002
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+6     False   entropy      None         auto                 1                  7  0.748418          320    BFW        1          1210
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+7     False      gini      None         auto                 3                  5  0.626049          320     DW        1          1043
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+8     False   entropy      None         auto                 4                  5   0.69041          320    NDW        1           959
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+9     False   entropy      None         auto                 5                  1  0.652293          280     BW        1          2302
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+10     False      gini      None         auto                 1                  2   0.77068          280    BFW        1          1395
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+11     False   entropy      None         auto                 1                  3  0.681884          280     DW        1          1181
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+12     False      gini      None         auto                 1                 10  0.672287          280    NDW        1          1121
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+13     False   entropy      None         auto                 3                  6   0.66081          240     BW        1          2679
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+14     False   entropy      None         auto                 1                  4  0.780436          240    BFW        1          1619
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+15     False      gini      None         auto                 2                  4   0.66198          240     DW        1          1377
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+16     False   entropy      None         auto                 2                  9  0.697789          240    NDW        1          1302
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+17     False   entropy      None         auto                 1                  6  0.672198          200     BW        1          3170
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+18     False   entropy      None         auto                 1                  3  0.776852          200    BFW        1          1921
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+19     False   entropy      None         auto                 1                  1  0.658534          200     DW        1          1620
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+20     False   entropy      None         auto                 2                  3  0.695162          200    NDW        1          1550
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+21     False   entropy      None         auto                 1                  5  0.672701          160     BW        1          3972
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+22     False   entropy      None         auto                 3                  3  0.772543          160    BFW        1          2396
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+23     False   entropy      None         auto                 5                  2  0.650058          160     DW        1          2038
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+24     False   entropy      None         auto                 5                  2  0.688793          160    NDW        1          1934
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+25     False      gini      None         auto                 2                  2  0.662889          120     BW        1          5279
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+26     False   entropy      None         auto                 1                  6  0.782123          120    BFW        1          3173
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+27     False      gini      None         auto                 6                  3  0.646842          120     DW        1          2710
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+28      True   entropy      None         auto                 1                  7  0.663918          120    NDW        1          2569
+
+================================================================================
+                                                                                                                                                                                                                                                                                                                                                
+
+iteration time: 20
+
+results:
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+1     False   entropy      None         auto                 1                  6  0.611682          360     BW        3          1798
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+2     False   entropy      None         auto                 4                  5  0.660463          360    BFW        3          1016
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+3     False   entropy      None         auto                 7                  9  0.654652          360     DW        3           927
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+4     False   entropy      None         auto                 1                  8  0.556981          360    NDW        3           871
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+5     False   entropy      None         auto                 5                  2  0.574595          320     BW        3          1974
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+6     False      gini      None         auto                 1                 10  0.670595          320    BFW        3          1134
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+7      True   entropy      None         auto                 1                  7  0.658088          320     DW        3          1020
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+8     False   entropy      None         auto                 4                  5  0.534833          320    NDW        3           954
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+9     False   entropy      None         auto                 1                  2  0.597957          280     BW        3          2229
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+10     False   entropy      None         auto                 2                  9  0.662912          280    BFW        3          1282
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+11     False      gini      None         auto                 2                  6   0.65999          280     DW        3          1146
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+12     False      gini      None         auto                 1                  7   0.56083          280    NDW        3          1083
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+13     False      gini      None         auto                 1                  1  0.589287          240     BW        3          2588
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+14     False   entropy      None         auto                 2                  3  0.693417          240    BFW        3          1498
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+15     False      gini      None         auto                 2                  4  0.664439          240     DW        3          1349
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+16     False   entropy      None         auto                 1                  7  0.569597          240    NDW        3          1239
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+17     False   entropy      None         auto                 7                  1  0.569681          200     BW        3          3081
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+18     False   entropy      None         auto                 2                  2  0.714205          200    BFW        3          1779
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+19     False   entropy      None         auto                 1                  1  0.667652          200     DW        3          1604
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+20     False   entropy      None         auto                 2                  3  0.567218          200    NDW        3          1477
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+21     False      gini      None         auto                 6                  1  0.579858          160     BW        3          3745
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+22     False      gini      None         auto                 3                  9  0.697659          160    BFW        3          2203
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+23     False   entropy      None         auto                 5                  2  0.655563          160     DW        3          1979
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+24     False   entropy      None         auto                 1                  6  0.587294          160    NDW        3          1766
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+25      True   entropy      None         auto                 3                  4   0.58131          120     BW        3          4912
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+26     False   entropy      None         auto                 5                  4  0.713949          120    BFW        3          2900
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+27     False      gini      None         auto                 6                  4  0.647752          120     DW        3          2570
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+28     False   entropy      None         auto                 5                  9  0.576223          120    NDW        3          2342
+
+================================================================================
+                                                                                                                                                                                                                                                                                                                                           
+
+iteration time: 20
+
+consolidate results: 
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+1      False   entropy      None         auto                 1                  4  0.699760          360     BW        4          1639
+2      False   entropy      None         auto                 7                  9  0.742106          360    BFW        4           987
+3      False   entropy      None         auto                 4                  5  0.694911          360     DW        4           907
+4      False      gini      None         auto                 3                  1  0.646736          360    NDW        4           732
+5      False   entropy      None         auto                 1                  6  0.705050          320     BW        4          1838
+6      False      gini      None         auto                 1                 10  0.766920          320    BFW        4          1096
+7      False   entropy      None         auto                 4                  5  0.729707          320     DW        4          1007
+8      False   entropy      None         auto                 2                  4  0.692952          320    NDW        4           831
+9      False   entropy      None         auto                 8                  2  0.670327          280     BW        4          2090
+10     False   entropy      None         auto                 1                  7  0.793375          280    BFW        4          1264
+11     False      gini      None         auto                 1                 10  0.723055          280     DW        4          1153
+12     False   entropy      None         auto                 4                  5  0.687566          280    NDW        4           937
+13     False   entropy      None         auto                 5                  9  0.672166          240     BW        4          2385
+14     False   entropy      None         auto                 6                 10  0.767707          240    BFW        4          1420
+15     False   entropy      None         auto                 2                  9  0.708253          240     DW        4          1301
+16     False      gini      None         auto                 3                  5  0.673884          240    NDW        4          1084
+17     False   entropy      None         auto                 3                  9  0.688743          200     BW        4          2801
+18      True      gini      None         auto                 2                 10  0.756131          200    BFW        4          1679
+19     False   entropy      None         auto                 2                  3  0.718827          200     DW        4          1516
+20     False   entropy      None         auto                 2                  9  0.694046          200    NDW        4          1285
+21      True   entropy      None         auto                 2                  4  0.687739          160     BW        4          3488
+22      True   entropy      None         auto                 3                  1  0.781174          160    BFW        4          2107
+23     False   entropy      None         auto                 1                  3  0.724823          160     DW        4          1898
+24     False   entropy      None         auto                 1                  4  0.700086          160    NDW        4          1590
+25     False      gini      None         auto                 5                 10  0.698721          120     BW        4          4680
+26     False      gini      None         auto                 2                  1  0.818731          120    BFW        4          2881
+27      True   entropy      None         auto                 1                  7  0.724091          120     DW        4          2546
+28      True   entropy      None         auto                 1                  5  0.691598          120    NDW        4          2134
+
+====================================================================
+
+
+iteration time: 20
+
+consolidate results: 
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+1      False      gini      None         auto                 1                  8  0.600794          360     BW        5          2462
+2      False      gini      None         auto                 1                  2  0.709536          360    BFW        5          1386
+3      False   entropy      None         auto                 1                  7  0.639677          360     DW        5          1204
+4      False   entropy      None         auto                 1                  7  0.604567          360    NDW        5          1258
+5      False      gini      None         auto                 2                  5  0.589819          320     BW        5          2728
+6      False   entropy      None         auto                 1                  4  0.707281          320    BFW        5          1548
+7      False      gini      None         auto                 1                  2  0.639002          320     DW        5          1340
+8      False      gini      None         auto                 1                  2  0.610766          320    NDW        5          1388
+9       True   entropy      None         auto                 1                  3  0.574616          280     BW        5          3114
+10     False   entropy      None         auto                 1                  3  0.718225          280    BFW        5          1766
+11     False   entropy      None         auto                 2                  3  0.624315          280     DW        5          1528
+12     False   entropy      None         auto                 1                  4  0.602984          280    NDW        5          1586
+13     False   entropy      None         auto                 2                  2  0.587633          240     BW        5          3610
+14      True   entropy      None         auto                10                  2  0.650738          240    BFW        5          2062
+15     False   entropy      None         auto                 1                  6  0.626824          240     DW        5          1786
+16     False   entropy      None         auto                 1                  3  0.611719          240    NDW        5          1824
+17     False   entropy      None         auto                 3                  5  0.581243          200     BW        5          4307
+18     False      gini      None         auto                 1                  8  0.722752          200    BFW        5          2466
+19     False   entropy      None         auto                 8                  9  0.604308          200     DW        5          2119
+20     False      gini      None         auto                 3                  9  0.602329          200    NDW        5          2188
+21     False      gini      None         auto                 2                  2  0.587779          160     BW        5          5308
+22     False   entropy      None         auto                 7                  1  0.702551          160    BFW        5          3054
+23     False      gini      None         auto                 1                  1  0.620529          160     DW        5          2650
+24     False      gini      None         auto                 1                  1  0.608306          160    NDW        5          2658
+25     False      gini      None         auto                 4                  3  0.588580          120     BW        5          7069
+26     False   entropy      None         auto                 2                  8  0.732629          120    BFW        5          4100
+27     False   entropy      None         auto                 4                  9  0.623114          120     DW        5          3503
+28     False   entropy      None         auto                 4                  9  0.594017          120    NDW        5          3566
+====================================================================
+
+
+iteration time: 20
+
+consolidate results: 
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+1       True      gini      None         auto                 1                 10  0.639776          360     BW        6          1684
+2      False      gini      None         auto                 3                  5  0.747303          360    BFW        6          1048
+3      False   entropy      None         auto                 7                  1  0.680244          360     DW        6           938
+4      False   entropy      None         auto                 2                  5  0.682319          360    NDW        6           746
+5      False   entropy      None         auto                 1                  6  0.683020          320     BW        6          1872
+6      False   entropy      None         auto                 1                  3  0.764624          320    BFW        6          1187
+7      False      gini      None         auto                 3                  5  0.696421          320     DW        6          1038
+8      False   entropy      None         auto                 1                  8  0.685961          320    NDW        6           834
+9       True   entropy      None         auto                 3                  1  0.662456          280     BW        6          2103
+10     False   entropy      None         auto                 2                  9  0.756914          280    BFW        6          1324
+11     False      gini      None         auto                 1                 10  0.693608          280     DW        6          1165
+12     False   entropy      None         auto                 4                  5  0.661565          280    NDW        6           938
+13     False      gini      None         auto                 1                  8  0.681815          240     BW        6          2439
+14     False   entropy      None         auto                 2                  3  0.776504          240    BFW        6          1528
+15     False      gini      None         auto                 2                  4  0.699738          240     DW        6          1360
+16     False      gini      None         auto                 1                  7  0.682297          240    NDW        6          1079
+17     False      gini      None         auto                 2                  1  0.684884          200     BW        6          2855
+18     False   entropy      None         auto                 1                  6  0.793084          200    BFW        6          1813
+19     False   entropy      None         auto                 1                  1  0.697935          200     DW        6          1596
+20     False   entropy      None         auto                 1                  7  0.684015          200    NDW        6          1259
+21     False   entropy      None         auto                 4                  9  0.682657          160     BW        6          3577
+22     False   entropy      None         auto                 3                  6  0.793298          160    BFW        6          2267
+23     False      gini      None         auto                 3                  1  0.700087          160     DW        6          1990
+24     False   entropy      None         auto                 2                  3  0.700098          160    NDW        6          1587
+25     False   entropy      None         auto                 4                  6  0.696125          120     BW        6          4745
+26      True   entropy      None         auto                 3                  6  0.785472          120    BFW        6          3021
+27     False   entropy      None         auto                 3                  6  0.720808          120     DW        6          2655
+28     False      gini      None         auto                 7                  7  0.680984          120    NDW        6          2090
+====================================================================
+
+
+iteration time: 20
+
+consolidate results: 
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+1      False   entropy      None         auto                 1                  2  0.538196          360     BW        7          2299
+2      False   entropy      None         auto                 2                  9  0.641618          360    BFW        7          1296
+3      False   entropy      None         auto                 5                  3  0.559024          360     DW        7          1189
+4      False      gini      None         auto                 1                 10  0.522273          360    NDW        7          1110
+5       True   entropy      None         auto                 1                  7  0.531513          320     BW        7          2566
+6      False   entropy      None         auto                 2                  3  0.650833          320    BFW        7          1468
+7      False      gini      None         auto                 1                  2  0.575642          320     DW        7          1345
+8      False   entropy      None         auto                 1                  7  0.543886          320    NDW        7          1221
+9      False   entropy      None         auto                 5                  4  0.527550          280     BW        7          2914
+10      True      gini      None         auto                 1                 10  0.625621          280    BFW        7          1658
+11     False   entropy      None         auto                 2                  3  0.573999          280     DW        7          1513
+12     False      gini      None         auto                 1                  8  0.534858          280    NDW        7          1401
+13     False      gini      None         auto                 4                  5  0.540205          240     BW        7          3343
+14     False   entropy      None         auto                 5                  4  0.643880          240    BFW        7          1934
+15     False   entropy      None         auto                 2                  9  0.568194          240     DW        7          1736
+16     False   entropy      None         auto                 1                  1  0.543397          240    NDW        7          1607
+17     False   entropy      None         auto                 1                  5  0.563343          200     BW        7          3994
+18     False   entropy      None         auto                 5                  1  0.654232          200    BFW        7          2304
+19     False      gini      None         auto                 7                  7  0.552090          200     DW        7          2080
+20     False   entropy      None         auto                 1                  3  0.561235          200    NDW        7          1914
+21     False   entropy      None         auto                 2                  8  0.549995          160     BW        7          5005
+22     False   entropy      None         auto                 5                  4  0.672220          160    BFW        7          2893
+23     False      gini      None         auto                 1                  1  0.573063          160     DW        7          2605
+24     False   entropy      None         auto                 3                  3  0.557329          160    NDW        7          2400
+25     False   entropy      None         auto                 5                  5  0.545574          120     BW        7          6628
+26     False   entropy      None         auto                 1                  3  0.710996          120    BFW        7          3848
+27     False   entropy      None         auto                 1                  4  0.577708          120     DW        7          3446
+28     False   entropy      None         auto                 1                  6  0.561676          120    NDW        7          3182
+====================================================================
+
+
+iteration time: 20
+
+consolidate results: 
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor session  dataset size
+1      False      gini      None         auto                 1                  9  0.518455          360     BW     all         11679
+2      False   entropy      None         auto                 5                  5  0.612421          360    BFW     all          6811
+3      False   entropy      None         auto                 1                 10  0.557477          360     DW     all          6095
+4      False   entropy      None         auto                 4                  7  0.531099          360    NDW     all          5584
+5      False   entropy      None         auto                 8                  2  0.498083          320     BW     all         12980
+6      False   entropy      None         auto                 1                  3  0.650272          320    BFW     all          7643
+7      False   entropy      None         auto                 5                  5  0.555153          320     DW     all          6793
+8      False   entropy      None         auto                 2                  4  0.549737          320    NDW     all          6187
+9      False      gini      None         auto                 1                  4  0.526714          280     BW     all         14752
+10     False   entropy      None         auto                 3                  3  0.652107          280    BFW     all          8689
+11     False   entropy      None         auto                 1                  4  0.570647          280     DW     all          7686
+12     False      gini      None         auto                 4                  3  0.546720          280    NDW     all          7066
+13     False      gini      None         auto                 1                  8  0.524697          240     BW     all         17044
+14     False      gini      None         auto                 1                  1  0.660135          240    BFW     all         10061
+15     False      gini      None         auto                 1                  1  0.577274          240     DW     all          8909
+16     False   entropy      None         auto                 1                  2  0.557658          240    NDW     all          8135
+17     False      gini      None         auto                 4                 10  0.523409          200     BW     all         20208
+18     False   entropy      None         auto                 2                 10  0.657343          200    BFW     all         11962
+19     False   entropy      None         auto                 3                  7  0.570682          200     DW     all         10535
+20      True      gini      None         auto                 1                  4  0.543163          200    NDW     all          9673
+21     False   entropy      None         auto                 1                  4  0.539361          160     BW     all         25095
+22     False   entropy      None         auto                 1                  3  0.690532          160    BFW     all         14920
+23     False   entropy      None         auto                 4                  3  0.579535          160     DW     all         13160
+24     False      gini      None         auto                 5                  5  0.556095          160    NDW     all         11935
+25     False      gini      None         auto                 1                  5  0.541106          120     BW     all         33313
+26     False   entropy      None         auto                 2                  4  0.706312          120    BFW     all         19923
+27     False   entropy      None         auto                 3                  4  0.586018          120     DW     all         17430
+28     False      gini      None         auto                 1                  6  0.572631          120    NDW     all         15883
+====================================================================
+
+360: 0.736708 + 0.660463 + 0.742106 + 0.709536 + 0.747303 + 0.641618 + 0.612421 = 0.6929
+320: 0.748418 + 0.670595 + 0.766920 + 0.707281 + 0.764624 + 0.650833 + 0.650272 = 0.7084
+280: 0.77068 + 0.662912 + 0.793375 + 0.718225 + 0.756914 + 0.625621 + 0.652107 = 0.7114
+240: 0.780436 + 0.693417 + 0.767707 + 0.650738 + 0.776504 + 0.643880 + 0.660135 = 0.7104 
+200: 0.776852 + 0.714205 + 0.756131 + 0.722752 + 0.793084 + 0.654232 + 0.657343 = 0.7249 
+160: 0.772543 + 0.697659 + 0.781174 + 0.702551 + 0.793298 + 0.672220 + 0.690532 = 0.7300
+120: 0.782123 + 0.713949 + 0.818731 + 0.732629 + 0.785472 + 0.710996 + 0.706312 = 0.7500 
+
+iteration time: 20
+
+consolidate results: 
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  f1-score  window size sensor  session  dataset size
+1     False   entropy      None         auto                 1                  2  0.676010           80     BW        1          8164
+2     False      gini      None         auto                 2                  6  0.810197           80    BFW        1          4956
+3      True   entropy      None         auto                 1                  8  0.654840           80     DW        1          4182
+4     False   entropy      None         auto                 3                  5  0.700579           80    NDW        1          3982
+5     False   entropy      None         auto                10                  3  0.681761           40     BW        1         17763
+6     False   entropy      None         auto                 3                  7  0.856886           40    BFW        1         10506
+7     False      gini      None         auto                 4                  6  0.694570           40     DW        1          9088
+8     False   entropy      None         auto                 4                  8  0.717601           40    NDW        1          8675
+====================================================================
+
+
+
+
+
+
+
+
+
+
+Scoring: puff f1 score
+
+
+iteration: 20
+
+results:
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+1     False      gini      None         auto                 1                  2            20    0.586324   0.037278          360    BFW     all          6811
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+2     False      gini      None         auto                 2                  2            20    0.568137   0.031608          320    BFW     all          7643
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+3     False   entropy      None         auto                 3                  1            20    0.584234   0.027892          280    BFW     all          8689
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+4     False      gini      None         auto                 1                  8            20    0.566721   0.023725          240    BFW     all         10061
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+5     False   entropy      None         auto                 2                 10            20    0.555221   0.014109          200    BFW     all         11962
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+6     False   entropy      None         auto                 3                  4            20     0.54901   0.013435          160    BFW     all         14920
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+7     False   entropy      None         auto                 1                  2            20    0.546271   0.025515          120    BFW     all         19923
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+8     False   entropy      None         auto                 2                  5            20    0.540808   0.022151           80    BFW     all         30275
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+9     False   entropy      None         auto                 2                  6            20    0.572256   0.009058           40    BFW     all         63665
+
+
+====================================================================
+consolidate results: 
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+1     False      gini      None         auto                 1                  2            20    0.586324   0.037278          360    BFW     all          6811
+2     False      gini      None         auto                 2                  2            20    0.568137   0.031608          320    BFW     all          7643
+3     False   entropy      None         auto                 3                  1            20    0.584234   0.027892          280    BFW     all          8689
+4     False      gini      None         auto                 1                  8            20    0.566721   0.023725          240    BFW     all         10061
+5     False   entropy      None         auto                 2                 10            20    0.555221   0.014109          200    BFW     all         11962
+6     False   entropy      None         auto                 3                  4            20    0.549010   0.013435          160    BFW     all         14920
+7     False   entropy      None         auto                 1                  2            20    0.546271   0.025515          120    BFW     all         19923
+8     False   entropy      None         auto                 2                  5            20    0.540808   0.022151           80    BFW     all         30275
+9     False   entropy      None         auto                 2                  6            20    0.572256   0.009058           40    BFW     all         63665
+====================================================================
+
+
+
+LOSO
+iteration: 20
+
+results:
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+1     False      gini      None         auto                 1                  7            20    0.221771   0.052659          360    BFW     all          6811
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+2     False      gini      None         auto                 3                  3            20    0.197466   0.043139          320    BFW     all          7643
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+3      True      gini      None         auto                 3                  6            20     0.20498   0.084365          280    BFW     all          8689
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+4     False      gini      None         auto                 1                  8            20    0.178241   0.069795          240    BFW     all         10061
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+5     False   entropy      None         auto                 1                  4            20    0.142892    0.05295          200    BFW     all         11962
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+6     False      gini      None         auto                 1                  3            20    0.133803   0.051231          160    BFW     all         14920
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+7     False   entropy      None         auto                 1                  2            20    0.115317   0.040138          120    BFW     all         19923
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+8     False   entropy      None         auto                 3                  3            20    0.095818   0.056306           80    BFW     all         30275
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+9     False   entropy      None         auto                 2                  6            20    0.093102   0.059257           40    BFW     all         63665
+
+
+====================================================================
+consolidate results: 
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+1     False      gini      None         auto                 1                  7            20    0.221771   0.052659          360    BFW     all          6811
+2     False      gini      None         auto                 3                  3            20    0.197466   0.043139          320    BFW     all          7643
+3      True      gini      None         auto                 3                  6            20    0.204980   0.084365          280    BFW     all          8689
+4     False      gini      None         auto                 1                  8            20    0.178241   0.069795          240    BFW     all         10061
+5     False   entropy      None         auto                 1                  4            20    0.142892   0.052950          200    BFW     all         11962
+6     False      gini      None         auto                 1                  3            20    0.133803   0.051231          160    BFW     all         14920
+7     False   entropy      None         auto                 1                  2            20    0.115317   0.040138          120    BFW     all         19923
+8     False   entropy      None         auto                 3                  3            20    0.095818   0.056306           80    BFW     all         30275
+9     False   entropy      None         auto                 2                  6            20    0.093102   0.059257           40    BFW     all         63665
+====================================================================
+
+puff f1 score
+iteration: 20
+
+results:
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+1     False      gini      None         auto                 4                  7            20    0.715997   0.072773          360    BFW        1          1078
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+2     False      gini      None         auto                 1                  9            20    0.718994   0.017912          320    BFW        1          1210
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+3     False   entropy      None         auto                 5                  3            20    0.709177   0.082436          280    BFW        1          1395
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+4     False   entropy      None         auto                 1                  4            20    0.720617   0.044042          240    BFW        1          1619
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+5     False   entropy      None         auto                 1                  2            20    0.695461   0.066329          200    BFW        1          1921
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+6     False   entropy      None         auto                 2                  2            20    0.659127   0.025354          160    BFW        1          2396
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+7     False      gini      None         auto                 1                  2            20    0.656342   0.055096          120    BFW        1          3173
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+8     False   entropy      None         auto                 1                  1            20    0.615041   0.037817           80    BFW        1          4956
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+9     False      gini      None         auto                 2                 10            20    0.598163   0.030101           40    BFW        1         10506
+
+
+====================================================================
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+10     False   entropy      None         auto                 2                  4            20    0.650316   0.076385          360    BFW        3          1016
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+11     False      gini      None         auto                 1                  6            20    0.571154   0.146051          320    BFW        3          1134
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+12     False   entropy      None         auto                 5                  2            20    0.599634   0.052119          280    BFW        3          1282
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+13     False      gini      None         auto                 4                  2            20    0.564291   0.094246          240    BFW        3          1498
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+14     False      gini      None         auto                 3                  3            20    0.608905   0.048207          200    BFW        3          1779
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+15     False   entropy      None         auto                 5                  3            20    0.628729   0.071865          160    BFW        3          2203
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+16     False      gini      None         auto                 2                  2            20    0.638579   0.071127          120    BFW        3          2900
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+17     False   entropy      None         auto                 1                  3            20    0.601251   0.033467           80    BFW        3          4387
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+18     False   entropy      None         auto                 4                  2            20    0.618116   0.033627           40    BFW        3          8956
+
+
+====================================================================
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+19     False   entropy      None         auto                 2                  4            20    0.750218   0.050146          360    BFW        4           987
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+20     False   entropy      None         auto                 5                  2            20    0.754077   0.066342          320    BFW        4          1096
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+21     False   entropy      None         auto                 1                  4            20     0.78734   0.062973          280    BFW        4          1264
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+22     False   entropy      None         auto                 1                  7            20    0.801875   0.035916          240    BFW        4          1420
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+23     False      gini      None         auto                 9                  5            20    0.733841   0.086567          200    BFW        4          1679
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+24      True   entropy      None         auto                 1                  5            20    0.732066   0.059098          160    BFW        4          2107
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+25     False      gini      None         auto                 1                  7            20    0.721225   0.076902          120    BFW        4          2881
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+26     False   entropy      None         auto                 2                  5            20    0.723593   0.068445           80    BFW        4          4331
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+27     False   entropy      None         auto                 1                  7            20    0.706081   0.050669           40    BFW        4          9444
+
+
+====================================================================
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+28     False      gini      None         auto                 2                  4            20    0.712104    0.04394          360    BFW        5          1386
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+29     False   entropy      None         auto                 3                 10            20    0.727774    0.06124          320    BFW        5          1548
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+30     False   entropy      None         auto                 2                  2            20    0.727025   0.053696          280    BFW        5          1766
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+31     False   entropy      None         auto                 1                  3            20    0.764338   0.040542          240    BFW        5          2062
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+32     False      gini      None         auto                 2                  6            20    0.735927   0.072247          200    BFW        5          2466
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+33     False   entropy      None         auto                 3                  2            20    0.720563   0.052532          160    BFW        5          3054
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+34     False      gini      None         auto                 2                  9            20    0.686884   0.035382          120    BFW        5          4100
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+35     False   entropy      None         auto                 4                  2            20    0.650702   0.030634           80    BFW        5          6219
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+36     False      gini      None         auto                 1                  6            20    0.656402   0.029793           40    BFW        5         12776
+
+
+====================================================================
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+37     False   entropy      None         auto                 4                  4            20    0.589885   0.140787          360    BFW        6          1048
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+38     False   entropy      None         auto                 1                  7            20    0.598548   0.123282          320    BFW        6          1187
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+39     False      gini      None         auto                 1                  4            20    0.556647    0.06729          280    BFW        6          1324
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+40     False   entropy      None         auto                 2                  3            20    0.569196   0.072355          240    BFW        6          1528
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+41     False      gini      None         auto                 2                  6            20     0.56823   0.041998          200    BFW        6          1813
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+42     False      gini      None         auto                 1                  2            20    0.546779    0.04813          160    BFW        6          2267
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+43     False   entropy      None         auto                 1                  2            20    0.597818   0.041181          120    BFW        6          3021
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+44     False   entropy      None         auto                 2                  1            20     0.58257   0.058354           80    BFW        6          4556
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+45     False   entropy      None         auto                 2                  5            20     0.70065   0.037826           40    BFW        6          9949
+
+
+====================================================================
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+46     False   entropy      None         auto                 8                  9            20    0.343289   0.086266          360    BFW        7          1296
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+47     False   entropy      None         auto                 5                  5            20    0.305922   0.060712          320    BFW        7          1468
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+48     False      gini      None         auto                 3                  2            20     0.34789   0.099235          280    BFW        7          1658
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+49     False   entropy      None         auto                 1                  8            20     0.38717   0.071941          240    BFW        7          1934
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+50     False   entropy      None         auto                 1                  1            20    0.408364   0.053035          200    BFW        7          2304
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+51     False      gini      None         auto                 1                  7            20    0.344238   0.034778          160    BFW        7          2893
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+52     False      gini      None         auto                 2                  7            20    0.332578   0.090059          120    BFW        7          3848
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+53     False   entropy      None         auto                 2                 10            20    0.352669   0.063433           80    BFW        7          5826
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+54     False   entropy      None         auto                 3                  5            20    0.484194   0.055014           40    BFW        7         12034
+
+
+====================================================================
+consolidate results: 
+
+   bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+1      False      gini      None         auto                 4                  7            20    0.715997   0.072773          360    BFW        1          1078
+2      False      gini      None         auto                 1                  9            20    0.718994   0.017912          320    BFW        1          1210
+3      False   entropy      None         auto                 5                  3            20    0.709177   0.082436          280    BFW        1          1395
+4      False   entropy      None         auto                 1                  4            20    0.720617   0.044042          240    BFW        1          1619
+5      False   entropy      None         auto                 1                  2            20    0.695461   0.066329          200    BFW        1          1921
+6      False   entropy      None         auto                 2                  2            20    0.659127   0.025354          160    BFW        1          2396
+7      False      gini      None         auto                 1                  2            20    0.656342   0.055096          120    BFW        1          3173
+8      False   entropy      None         auto                 1                  1            20    0.615041   0.037817           80    BFW        1          4956
+9      False      gini      None         auto                 2                 10            20    0.598163   0.030101           40    BFW        1         10506
+10     False   entropy      None         auto                 2                  4            20    0.650316   0.076385          360    BFW        3          1016
+11     False      gini      None         auto                 1                  6            20    0.571154   0.146051          320    BFW        3          1134
+12     False   entropy      None         auto                 5                  2            20    0.599634   0.052119          280    BFW        3          1282
+13     False      gini      None         auto                 4                  2            20    0.564291   0.094246          240    BFW        3          1498
+14     False      gini      None         auto                 3                  3            20    0.608905   0.048207          200    BFW        3          1779
+15     False   entropy      None         auto                 5                  3            20    0.628729   0.071865          160    BFW        3          2203
+16     False      gini      None         auto                 2                  2            20    0.638579   0.071127          120    BFW        3          2900
+17     False   entropy      None         auto                 1                  3            20    0.601251   0.033467           80    BFW        3          4387
+18     False   entropy      None         auto                 4                  2            20    0.618116   0.033627           40    BFW        3          8956
+19     False   entropy      None         auto                 2                  4            20    0.750218   0.050146          360    BFW        4           987
+20     False   entropy      None         auto                 5                  2            20    0.754077   0.066342          320    BFW        4          1096
+21     False   entropy      None         auto                 1                  4            20    0.787340   0.062973          280    BFW        4          1264
+22     False   entropy      None         auto                 1                  7            20    0.801875   0.035916          240    BFW        4          1420
+23     False      gini      None         auto                 9                  5            20    0.733841   0.086567          200    BFW        4          1679
+24      True   entropy      None         auto                 1                  5            20    0.732066   0.059098          160    BFW        4          2107
+25     False      gini      None         auto                 1                  7            20    0.721225   0.076902          120    BFW        4          2881
+26     False   entropy      None         auto                 2                  5            20    0.723593   0.068445           80    BFW        4          4331
+27     False   entropy      None         auto                 1                  7            20    0.706081   0.050669           40    BFW        4          9444
+28     False      gini      None         auto                 2                  4            20    0.712104   0.043940          360    BFW        5          1386
+29     False   entropy      None         auto                 3                 10            20    0.727774   0.061240          320    BFW        5          1548
+30     False   entropy      None         auto                 2                  2            20    0.727025   0.053696          280    BFW        5          1766
+31     False   entropy      None         auto                 1                  3            20    0.764338   0.040542          240    BFW        5          2062
+32     False      gini      None         auto                 2                  6            20    0.735927   0.072247          200    BFW        5          2466
+33     False   entropy      None         auto                 3                  2            20    0.720563   0.052532          160    BFW        5          3054
+34     False      gini      None         auto                 2                  9            20    0.686884   0.035382          120    BFW        5          4100
+35     False   entropy      None         auto                 4                  2            20    0.650702   0.030634           80    BFW        5          6219
+36     False      gini      None         auto                 1                  6            20    0.656402   0.029793           40    BFW        5         12776
+37     False   entropy      None         auto                 4                  4            20    0.589885   0.140787          360    BFW        6          1048
+38     False   entropy      None         auto                 1                  7            20    0.598548   0.123282          320    BFW        6          1187
+39     False      gini      None         auto                 1                  4            20    0.556647   0.067290          280    BFW        6          1324
+40     False   entropy      None         auto                 2                  3            20    0.569196   0.072355          240    BFW        6          1528
+41     False      gini      None         auto                 2                  6            20    0.568230   0.041998          200    BFW        6          1813
+42     False      gini      None         auto                 1                  2            20    0.546779   0.048130          160    BFW        6          2267
+43     False   entropy      None         auto                 1                  2            20    0.597818   0.041181          120    BFW        6          3021
+44     False   entropy      None         auto                 2                  1            20    0.582570   0.058354           80    BFW        6          4556
+45     False   entropy      None         auto                 2                  5            20    0.700650   0.037826           40    BFW        6          9949
+46     False   entropy      None         auto                 8                  9            20    0.343289   0.086266          360    BFW        7          1296
+47     False   entropy      None         auto                 5                  5            20    0.305922   0.060712          320    BFW        7          1468
+48     False      gini      None         auto                 3                  2            20    0.347890   0.099235          280    BFW        7          1658
+49     False   entropy      None         auto                 1                  8            20    0.387170   0.071941          240    BFW        7          1934
+50     False   entropy      None         auto                 1                  1            20    0.408364   0.053035          200    BFW        7          2304
+51     False      gini      None         auto                 1                  7            20    0.344238   0.034778          160    BFW        7          2893
+52     False      gini      None         auto                 2                  7            20    0.332578   0.090059          120    BFW        7          3848
+53     False   entropy      None         auto                 2                 10            20    0.352669   0.063433           80    BFW        7          5826
+54     False   entropy      None         auto                 3                  5            20    0.484194   0.055014           40    BFW        7         12034
+====================================================================
+
+440, 520, 560
+
+iteration: 20
+
+results:
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+1     False      gini      None         auto                 5                  9            20    0.585954   0.023601          440    BFW     all          5679
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+2     False   entropy      None         auto                 5                  8            20     0.60638   0.032899          520    BFW     all          4864
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+3     False      gini      None         auto                 8                  5            20    0.599574    0.03365          560    BFW     all          4540
+
+
+====================================================================
+consolidate results: 
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+1     False      gini      None         auto                 5                  9            20    0.585954   0.023601          440    BFW     all          5679
+2     False   entropy      None         auto                 5                  8            20    0.606380   0.032899          520    BFW     all          4864
+3     False      gini      None         auto                 8                  5            20    0.599574   0.033650          560    BFW     all          4540
+====================================================================
+
+600, 680, 800
+
+
+
+iteration: 20
+
+results:
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+1     False      gini      None         auto                 2                  6            20    0.621378   0.020407          600    BFW     all          4268
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+2     False      gini      None         auto                 5                  8            20    0.613058   0.031271          680    BFW     all          3802
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+3     False      gini      None         auto                 1                 10            20    0.643237   0.027788          800    BFW     all          3311
+
+
+====================================================================
+consolidate results: 
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+1     False      gini      None         auto                 2                  6            20    0.621378   0.020407          600    BFW     all          4268
+2     False      gini      None         auto                 5                  8            20    0.613058   0.031271          680    BFW     all          3802
+3     False      gini      None         auto                 1                 10            20    0.643237   0.027788          800    BFW     all          3311
+====================================================================
+
+
+iteration: 20
+
+results:
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+1     False      gini      None         auto                 2                  7            20    0.674006   0.018407         1000    BFW     all          2686
+
+
+====================================================================
+consolidate results: 
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+1     False      gini      None         auto                 2                  7            20    0.674006   0.018407         1000    BFW     all          2686
+====================================================================
+
+
+iteration: 20
+
+results:
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+1     False   entropy      None         auto                 1                  2            20    0.670744   0.033513         1400    BFW     all          1964
+
+
+====================================================================
+consolidate results: 
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+1     False   entropy      None         auto                 1                  2            20    0.670744   0.033513         1400    BFW     all          1964
+====================================================================
+
+LOSO large window size
+
+
+iteration: 20
+
+results:
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+1     False   entropy      None         auto                 7                  5            20     0.44644   0.044283         1400    BFW     all          1964
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+2      True      gini      None         auto                 6                  9            20    0.397102     0.0526         1000    BFW     all          2686
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+3     False      gini      None         auto                 7                  4            20    0.354777    0.05593          800    BFW     all          3311
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+4      True      gini      None         auto                10                 10            20    0.309921   0.063425          600    BFW     all          4268
+
+
+====================================================================
+consolidate results: 
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+1     False   entropy      None         auto                 7                  5            20    0.446440   0.044283         1400    BFW     all          1964
+2      True      gini      None         auto                 6                  9            20    0.397102   0.052600         1000    BFW     all          2686
+3     False      gini      None         auto                 7                  4            20    0.354777   0.055930          800    BFW     all          3311
+4      True      gini      None         auto                10                 10            20    0.309921   0.063425          600    BFW     all          4268
+====================================================================
+
+DW and NDW
+iteration: 20
+
+results:
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+1     False      gini      None         auto                 6                  9            20    0.623671   0.025537         1000     DW     all          2498
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+2     False   entropy      None         auto                 7                  2            20    0.605872   0.020476         1000    NDW     all          2378
+
+
+====================================================================
+consolidate results: 
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor session  dataset size
+1     False      gini      None         auto                 6                  9            20    0.623671   0.025537         1000     DW     all          2498
+2     False   entropy      None         auto                 7                  2            20    0.605872   0.020476         1000    NDW     all          2378
+====================================================================
+
+
+
+
+iteration: 20
+
+results:
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+1     False   entropy      None         auto                 1                  1            20    0.811006   0.045112         1000    BFW        1           426
+
+
+====================================================================
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+2     False   entropy      None         auto                 3                  1            20    0.795448   0.050512         1000    BFW        3           383
+
+
+====================================================================
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+3     False      gini      None         auto                 2                  8            20    0.777886   0.048123         1000    BFW        4           410
+
+
+====================================================================
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+4     False   entropy      None         auto                 1                  3            20    0.773857   0.065167         1000    BFW        5           537
+
+
+====================================================================
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+5      True   entropy      None         auto                 1                  9            20    0.702465     0.1296         1000    BFW        6           433
+
+
+====================================================================
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+6     False      gini      None         auto                 1                  8            20    0.659197   0.061599         1000    BFW        7           497
+
+
+====================================================================
+consolidate results: 
+
+  bootstrap criterion max_depth max_features  min_samples_leaf  min_samples_split  n_estimators  score mean  score std  window size sensor  session  dataset size
+1     False   entropy      None         auto                 1                  1            20    0.811006   0.045112         1000    BFW        1           426
+2     False   entropy      None         auto                 3                  1            20    0.795448   0.050512         1000    BFW        3           383
+3     False      gini      None         auto                 2                  8            20    0.777886   0.048123         1000    BFW        4           410
+4     False   entropy      None         auto                 1                  3            20    0.773857   0.065167         1000    BFW        5           537
+5      True   entropy      None         auto                 1                  9            20    0.702465   0.129600         1000    BFW        6           433
+6     False      gini      None         auto                 1                  8            20    0.659197   0.061599         1000    BFW        7           497
+====================================================================

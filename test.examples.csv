@@ -1,0 +1,6 @@
+session,sensors,lbound,rbound,type,use,other
+1,2,10/27/2011 12:03:05,10/27/2011 12:04:35,puff,normal,ambiguity
+1,3,10/27/2011 11:35:00,10/27/2011 11:36:30,puff,normal,
+1,3,10/27/2011 11:34:47,10/27/2011 11:36:17,puff,normal,ambiguity
+1,3,10/27/2011 11:54:34,10/27/2011 11:56:04,puff,normal,ambiguity
+1,3,10/27/2011 12:47:25,10/27/2011 12:48:55,puff,normal,

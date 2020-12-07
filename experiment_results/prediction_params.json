@@ -1,0 +1,32 @@
+{
+    "1000":{
+                "clf_params":{
+                          "max_features": "auto",
+                          "min_samples_split": 7,
+                          "min_samples_leaf": 2,
+                          "bootstrap": 0,
+                          "criterion": "gini",
+                          "n_estimators":200},
+                "validation": "loso"
+    },
+    "360":{
+                "clf_params":{
+                          "max_features": "auto",
+                          "min_samples_split": 2,
+                          "min_samples_leaf": 1,
+                          "bootstrap": 0,
+                          "criterion": "gini",
+                          "n_estimators":200},
+                "validation": "loso"
+    },
+    "40":{
+                "clf_params":{
+                          "max_features": "auto",
+                          "min_samples_split": 6,
+                          "min_samples_leaf": 2,
+                          "bootstrap": 0,
+                          "criterion": "entropy",
+                          "n_estimators":200},
+                "validation": "loso"
+    }
+}

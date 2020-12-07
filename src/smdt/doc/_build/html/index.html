@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to smdt’s documentation! &mdash; smdt 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="smdt 0.1 documentation" href="#" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="#">smdt 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="welcome-to-smdt-s-documentation">
+<h1>Welcome to smdt&#8217;s documentation!<a class="headerlink" href="#welcome-to-smdt-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<span class="target" id="module-raw"></span><p>Module for processing smdt raw data</p>
+<dl class="function">
+<dt id="raw.filter_raw">
+<tt class="descclassname">raw.</tt><tt class="descname">filter_raw</tt><big>(</big><em>raw_data</em>, <em>raw_value_names</em>, <em>filter_type=None</em>, <em>paras=None</em><big>)</big><a class="reference internal" href="_modules/raw.html#filter_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#raw.filter_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply filters onto raw dataset</p>
+<p>Apply different filters onto raw dataset, various filter&#8217;s parameters can be 
+specified, this function doesn&#8217;t support &#8220;group by&#8221;, so be care when using it
+on multiple sessions, sensors and subjects</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">raw_data: raw dataset to be filtered
+raw_value_names: list of raw dataset value column names
+type: string of filter type
+paras: dict of mapping of parameter names to its values</p>
+<blockquote class="last">
+<div>&#8220;median&#8221;: {&#8220;kernel_size&#8221;: 3}
+&#8220;lowpass&#8221;: {&#8220;pass_freq&#8221;: 0.01, &#8220;stop_freq&#8221;: 0.1, &#8220;pass_loss&#8221;: 1, &#8220;stop_loss&#8221;: 80}
+&#8220;dcblock&#8221;: {&#8220;p&#8221;:0.95}</div></blockquote>
+</dd>
+<dt>Returns:</dt>
+<dd>return filtered raw dataset</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="raw.preprocess_raw">
+<tt class="descclassname">raw.</tt><tt class="descname">preprocess_raw</tt><big>(</big><em>raw_data</em>, <em>annotation_data</em>, <em>grace_period=datetime.timedelta(0</em>, <em>180)</em>, <em>by=None</em><big>)</big><a class="reference internal" href="_modules/raw.html#preprocess_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#raw.preprocess_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Preprocess raw dataset</p>
+<p>Preprocess raw dataset by truncate it within the range of actual session, user
+can specify a grace period before and after that, and then scale the raw data
+into -4g to 4g range</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>raw_data: raw dataset to be preprocessed
+annotation_data: annotation dataset
+grace_period: timedelta used in truncation, default is 3min
+by: mainly used in truncation which can be thought as subset selection, this
+is used to specify a column name used to group raw dataset and then do truncation</dd>
+<dt>Returns:</dt>
+<dd>preprocessed raw dataset</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="raw.scale_raw">
+<tt class="descclassname">raw.</tt><tt class="descname">scale_raw</tt><big>(</big><em>raw_data</em>, <em>ubound</em>, <em>lbound</em><big>)</big><a class="reference internal" href="_modules/raw.html#scale_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#raw.scale_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>linearly scale raw data into (lbound, ubound)</p>
+<p>Linearly scale every raw data sample into range of (lbound, ubound), wockets
+unscaled raw data is from 0 to 1023, which can be defined in wockets.utils</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>raw_data: raw dataset to be scaled
+ubound: upper bound of scale range
+lbound: lower bound of scale range</dd>
+</dl>
+<p>Return: scaled raw dataset</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="raw.select_raw_by_ts">
+<tt class="descclassname">raw.</tt><tt class="descname">select_raw_by_ts</tt><big>(</big><em>raw_data</em>, <em>lbound=None</em>, <em>rbound=None</em>, <em>by=None</em><big>)</big><a class="reference internal" href="_modules/raw.html#select_raw_by_ts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#raw.select_raw_by_ts" title="Permalink to this definition">¶</a></dt>
+<dd><p>select a subset of raw dataset by given timestamp bounds</p>
+<p>Select a subset of raw dataset by given timestamp bounds. The selection can be
+done on raw dataset with multiple sessions, sensors or subjects. The selected
+subset will have index been reset</p>
+<dl class="docutils">
+<dt>Args: </dt>
+<dd>raw_data: raw dataset to be selected
+lbound: lower bound timestamp, default is None which indicates the start time
+rbound: upper bound timestamp, default is None which indicates the end time
+by: group raw dataset by a column and then select subset from each group, 
+should be a string which corresponds to one of the columns. Default is None.</dd>
+<dt>Returns:</dt>
+<dd>selected subset of raw dataset</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="raw.transform_raw">
+<tt class="descclassname">raw.</tt><tt class="descname">transform_raw</tt><big>(</big><em>raw_data, transform_type=None, value_names=['rawx', 'rawy', 'rawz']</em><big>)</big><a class="reference internal" href="_modules/raw.html#transform_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#raw.transform_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>transform raw dataset into other measurement or space</p>
+<p>Transform raw dataset into other measurement or space like orientation, posture
+distance, frequency domain</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>raw_data: raw dataset to be transformed
+transform_type: string to specify the transformation operation
+value_names: raw dataset&#8217;s value column names</dd>
+<dt>Returns:</dt>
+<dd>(new_values_names, new_data): transformed dataset&#8217;s value column names, 
+transformed new dataset</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to smdt&#8217;s documentation!</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="#">smdt 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Qu Tang.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

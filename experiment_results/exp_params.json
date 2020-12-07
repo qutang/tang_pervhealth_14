@@ -1,0 +1,99 @@
+{
+    "1":{
+        "sensor": "BFW",
+        "clf_params":{
+                  "max_features": "auto",
+                  "min_samples_split": 1,
+                  "min_samples_leaf": 1,
+                  "bootstrap": 0,
+                  "criterion": "entropy",
+                  "n_estimators":200},
+        "validation": "kfold"
+    },
+    "3":{
+        "sensor": "BFW",
+        "clf_params":{
+                  "max_features": "auto",
+                  "min_samples_split": 1,
+                  "min_samples_leaf": 3,
+                  "bootstrap": 0,
+                  "criterion": "entropy",
+                  "n_estimators":200},
+        "validation": "kfold"
+    },
+    "4":{
+        "sensor": "BFW",
+        "clf_params":{
+                  "max_features": "auto",
+                  "min_samples_split": 8,
+                  "min_samples_leaf": 2,
+                  "bootstrap": 0,
+                  "criterion": "gini",
+                  "n_estimators":200},
+        "validation": "kfold"
+    },
+    "5":{
+        "sensor": "BFW",
+        "clf_params":{
+                  "max_features": "auto",
+                  "min_samples_split": 3,
+                  "min_samples_leaf": 1,
+                  "bootstrap": 0,
+                  "criterion": "entropy",
+                  "n_estimators":200},
+        "validation": "kfold"
+    },
+    "6":{
+        "sensor": "BFW",
+        "clf_params":{
+                  "max_features": "auto",
+                  "min_samples_split": 9,
+                  "min_samples_leaf": 1,
+                  "bootstrap": 1,
+                  "criterion": "entropy",
+                  "n_estimators":200},
+        "validation": "kfold"
+    },
+    "7":{
+        "sensor": "BFW",
+        "clf_params":{
+                  "max_features": "auto",
+                  "min_samples_split": 8,
+                  "min_samples_leaf": 1,
+                  "bootstrap": 0,
+                  "criterion": "gini",
+                  "n_estimators":200},
+        "validation": "kfold"
+    },
+    "all":{"BFW":{
+                "clf_params":{
+                          "max_features": "auto",
+                          "min_samples_split": 7,
+                          "min_samples_leaf": 2,
+                          "bootstrap": 0,
+                          "criterion": "gini",
+                          "n_estimators":200},
+                "validation": "kfold"
+          },
+          "DW":{
+                "clf_params":{
+                  "max_features": "auto",
+                  "min_samples_split": 9,
+                  "min_samples_leaf": 6,
+                  "bootstrap": 0,
+                  "criterion": "gini",
+                  "n_estimators":200},
+          "validation": "kfold"
+          },
+          "NDW":{
+                "clf_params":{
+                  "max_features": "auto",
+                  "min_samples_split": 2,
+                  "min_samples_leaf": 7,
+                  "bootstrap": 0,
+                  "criterion": "entropy",
+                  "n_estimators":200},
+          "validation": "kfold"
+          }
+    }
+}

@@ -1,0 +1,354 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>raw &mdash; smdt 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="smdt 0.1 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">smdt 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for raw</h1><div class="highlight"><pre>
+<span class="c">#! /usr/bin/python</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd"> Module for processing smdt raw data</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;../&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.signal</span>
+<span class="kn">import</span> <span class="nn">scipy.fftpack</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">pyplot</span>
+<span class="kn">import</span> <span class="nn">viewer</span> <span class="kn">as</span> <span class="nn">s_viewer</span>
+<span class="kn">import</span> <span class="nn">annotation</span> <span class="kn">as</span> <span class="nn">s_annotation</span>
+<span class="kn">import</span> <span class="nn">wockets.utils</span> <span class="kn">as</span> <span class="nn">w_utils</span>
+
+<span class="n">scale_bounds</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">)</span> <span class="c"># raw data scale range from -4g to 4g</span>
+
+<div class="viewcode-block" id="scale_raw"><a class="viewcode-back" href="../index.html#raw.scale_raw">[docs]</a><span class="k">def</span> <span class="nf">scale_raw</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span><span class="n">ubound</span><span class="p">,</span><span class="n">lbound</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;linearly scale raw data into (lbound, ubound)</span>
+
+<span class="sd">  Linearly scale every raw data sample into range of (lbound, ubound), wockets</span>
+<span class="sd">  unscaled raw data is from 0 to 1023, which can be defined in wockets.utils</span>
+
+<span class="sd">  Args:</span>
+<span class="sd">    raw_data: raw dataset to be scaled</span>
+<span class="sd">    ubound: upper bound of scale range</span>
+<span class="sd">    lbound: lower bound of scale range</span>
+
+<span class="sd">  Return: scaled raw dataset</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+  <span class="n">scale_factor</span> <span class="o">=</span> <span class="p">(</span><span class="n">w_utils</span><span class="o">.</span><span class="n">raw_ubound</span> <span class="o">-</span> <span class="n">w_utils</span><span class="o">.</span><span class="n">raw_lbound</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">ubound</span> <span class="o">-</span> <span class="n">lbound</span><span class="p">)</span>
+  <span class="n">raw_data</span><span class="p">[</span><span class="n">w_utils</span><span class="o">.</span><span class="n">raw_value_names</span><span class="p">]</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">w_utils</span><span class="o">.</span><span class="n">raw_value_names</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">/</span><span class="n">scale_factor</span><span class="o">+</span><span class="n">lbound</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">raw_data</span>
+</div>
+<div class="viewcode-block" id="select_raw_by_ts"><a class="viewcode-back" href="../index.html#raw.select_raw_by_ts">[docs]</a><span class="k">def</span> <span class="nf">select_raw_by_ts</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">lbound</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">rbound</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;select a subset of raw dataset by given timestamp bounds</span>
+
+<span class="sd">  Select a subset of raw dataset by given timestamp bounds. The selection can be</span>
+<span class="sd">  done on raw dataset with multiple sessions, sensors or subjects. The selected</span>
+<span class="sd">  subset will have index been reset</span>
+
+<span class="sd">  Args: </span>
+<span class="sd">    raw_data: raw dataset to be selected</span>
+<span class="sd">    lbound: lower bound timestamp, default is None which indicates the start time</span>
+<span class="sd">    rbound: upper bound timestamp, default is None which indicates the end time</span>
+<span class="sd">    by: group raw dataset by a column and then select subset from each group, </span>
+<span class="sd">    should be a string which corresponds to one of the columns. Default is None.</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">    selected subset of raw dataset</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+  <span class="k">if</span> <span class="n">by</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">lbound</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+      <span class="n">lbound</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">w_utils</span><span class="o">.</span><span class="n">raw_ts_name</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">rbound</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+      <span class="n">rbound</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">w_utils</span><span class="o">.</span><span class="n">raw_ts_name</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">subset_raw_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">raw_data</span><span class="p">[</span><span class="n">w_utils</span><span class="o">.</span><span class="n">raw_ts_name</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">&gt;=</span><span class="n">lbound</span> <span class="ow">and</span> <span class="n">x</span><span class="o">&lt;=</span><span class="n">rbound</span><span class="p">)]</span>
+    <span class="n">subset_raw_data</span> <span class="o">=</span> <span class="n">subset_raw_data</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">subset_group_datas</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">groupby_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">group_name</span><span class="p">,</span> <span class="n">group_data</span> <span class="ow">in</span> <span class="n">groupby_data</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">lbound</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">lbound</span> <span class="o">=</span> <span class="n">group_data</span><span class="p">[</span><span class="n">w_utils</span><span class="o">.</span><span class="n">raw_ts_name</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+      <span class="k">if</span> <span class="n">rbound</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">rbound</span> <span class="o">=</span> <span class="n">group_data</span><span class="p">[</span><span class="n">w_utils</span><span class="o">.</span><span class="n">raw_ts_name</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+      <span class="n">subset_group_data</span> <span class="o">=</span> <span class="n">group_data</span><span class="p">[</span><span class="n">group_data</span><span class="p">[</span><span class="n">w_utils</span><span class="o">.</span><span class="n">raw_ts_name</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">&gt;=</span><span class="n">lbound</span> <span class="ow">and</span> <span class="n">x</span><span class="o">&lt;=</span><span class="n">rbound</span><span class="p">)]</span>
+      <span class="n">subset_group_datas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subset_group_data</span><span class="p">)</span>
+    <span class="n">subset_raw_data</span> <span class="o">=</span> <span class="n">w_utils</span><span class="o">.</span><span class="n">raw_data_consolidator</span><span class="p">(</span><span class="n">subset_group_datas</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">subset_raw_data</span>
+</div>
+<span class="k">def</span> <span class="nf">select_raw_by_random</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">30</span><span class="p">),</span> <span class="n">by</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+  <span class="n">lbound</span><span class="p">,</span> <span class="n">rbound</span> <span class="o">=</span> <span class="n">w_utils</span><span class="o">.</span><span class="n">generate_random_bounds</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">duration</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">select_raw_by_ts</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">lbound</span><span class="o">=</span><span class="n">lbound</span><span class="p">,</span> <span class="n">rbound</span><span class="o">=</span><span class="n">rbound</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+
+<div class="viewcode-block" id="preprocess_raw"><a class="viewcode-back" href="../index.html#raw.preprocess_raw">[docs]</a><span class="k">def</span> <span class="nf">preprocess_raw</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">annotation_data</span><span class="p">,</span> <span class="n">grace_period</span><span class="o">=</span><span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> <span class="n">by</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot; Preprocess raw dataset</span>
+
+<span class="sd">  Preprocess raw dataset by truncate it within the range of actual session, user</span>
+<span class="sd">  can specify a grace period before and after that, and then scale the raw data</span>
+<span class="sd">  into -4g to 4g range</span>
+
+<span class="sd">  Args:</span>
+<span class="sd">    raw_data: raw dataset to be preprocessed</span>
+<span class="sd">    annotation_data: annotation dataset</span>
+<span class="sd">    grace_period: timedelta used in truncation, default is 3min</span>
+<span class="sd">    by: mainly used in truncation which can be thought as subset selection, this</span>
+<span class="sd">    is used to specify a column name used to group raw dataset and then do truncation</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">    preprocessed raw dataset</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+  <span class="k">if</span> <span class="n">by</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="n">group_raw_datas</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">grouped_raw</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="p">)</span>
+    <span class="n">grouped_annotation</span> <span class="o">=</span> <span class="n">annotation_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">group_name</span><span class="p">,</span> <span class="n">group_data</span> <span class="ow">in</span> <span class="n">grouped_raw</span><span class="p">:</span>
+      <span class="c"># step 1: truncate raw data according to annotation start and end time</span>
+      <span class="n">lbound</span> <span class="o">=</span> <span class="n">annotation_data</span><span class="p">[</span><span class="n">s_annotation</span><span class="o">.</span><span class="n">st_col</span><span class="p">][</span><span class="n">grouped_annotation</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group_name</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span> <span class="o">-</span> <span class="n">grace_period</span>
+      <span class="n">rbound</span> <span class="o">=</span> <span class="n">annotation_data</span><span class="p">[</span><span class="n">s_annotation</span><span class="o">.</span><span class="n">et_col</span><span class="p">][</span><span class="n">grouped_annotation</span><span class="o">.</span><span class="n">groups</span><span class="p">[</span><span class="n">group_name</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="n">grace_period</span>
+      <span class="n">group_data</span> <span class="o">=</span> <span class="n">select_raw_by_ts</span><span class="p">(</span><span class="n">group_data</span><span class="p">,</span><span class="n">lbound</span><span class="p">,</span><span class="n">rbound</span><span class="p">)</span>
+      
+      <span class="c"># step 2: scale raw data into [-4, 4]g from [0, 1023]</span>
+      <span class="n">group_data</span> <span class="o">=</span> <span class="n">scale_raw</span><span class="p">(</span><span class="n">group_data</span><span class="p">,</span> <span class="n">scale_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">scale_bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+      <span class="n">group_raw_datas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">group_data</span><span class="p">)</span>
+    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">w_utils</span><span class="o">.</span><span class="n">raw_data_consolidator</span><span class="p">(</span><span class="n">group_raw_datas</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="c"># step 1: truncate raw data according to annotation start and end time    </span>
+    <span class="n">lbound</span> <span class="o">=</span> <span class="n">annotation_data</span><span class="p">[</span><span class="n">s_annotation</span><span class="o">.</span><span class="n">st_col</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">grace_period</span>
+    <span class="n">rbound</span> <span class="o">=</span> <span class="n">annotation_data</span><span class="p">[</span><span class="n">s_annotation</span><span class="o">.</span><span class="n">et_col</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">grace_period</span>
+    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">select_raw_by_ts</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">lbound</span><span class="p">,</span><span class="n">rbound</span><span class="p">)</span>
+    
+    <span class="c"># step 2: scale raw data into [-4, 4]g from [0, 1023]</span>
+    <span class="n">raw_data</span> <span class="o">=</span> <span class="n">scale_raw</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">scale_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">scale_bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+  <span class="k">return</span> <span class="n">raw_data</span>
+</div>
+<div class="viewcode-block" id="filter_raw"><a class="viewcode-back" href="../index.html#raw.filter_raw">[docs]</a><span class="k">def</span> <span class="nf">filter_raw</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">raw_value_names</span><span class="p">,</span><span class="n">filter_type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">paras</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Apply filters onto raw dataset</span>
+
+<span class="sd">  Apply different filters onto raw dataset, various filter&#39;s parameters can be </span>
+<span class="sd">  specified, this function doesn&#39;t support &quot;group by&quot;, so be care when using it</span>
+<span class="sd">  on multiple sessions, sensors and subjects</span>
+
+<span class="sd">  Args:</span>
+<span class="sd">    raw_data: raw dataset to be filtered</span>
+<span class="sd">    raw_value_names: list of raw dataset value column names</span>
+<span class="sd">    type: string of filter type</span>
+<span class="sd">    paras: dict of mapping of parameter names to its values</span>
+<span class="sd">           &quot;median&quot;: {&quot;kernel_size&quot;: 3}</span>
+<span class="sd">           &quot;lowpass&quot;: {&quot;pass_freq&quot;: 0.01, &quot;stop_freq&quot;: 0.1, &quot;pass_loss&quot;: 1, &quot;stop_loss&quot;: 80}</span>
+<span class="sd">           &quot;dcblock&quot;: {&quot;p&quot;:0.95}</span>
+<span class="sd">  Returns:</span>
+<span class="sd">    return filtered raw dataset</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+  <span class="n">new_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">filter_type</span> <span class="o">==</span> <span class="s">&#39;median&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">paras</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+      <span class="n">paras</span><span class="p">[</span><span class="s">&#39;kernel_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">raw_value_names</span><span class="p">:</span>
+      <span class="n">new_data</span><span class="p">[</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">medfilt</span><span class="p">(</span><span class="n">new_data</span><span class="p">[</span><span class="n">value</span><span class="p">],</span> <span class="n">paras</span><span class="p">[</span><span class="s">&#39;kernel_size&#39;</span><span class="p">])</span>
+  <span class="k">elif</span> <span class="n">filter_type</span> <span class="o">==</span> <span class="s">&#39;lowpass&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">paras</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+      <span class="n">paras</span><span class="p">[</span><span class="s">&#39;pass_freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.01</span>
+      <span class="n">paras</span><span class="p">[</span><span class="s">&#39;stop_freq&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.15</span>
+      <span class="n">paras</span><span class="p">[</span><span class="s">&#39;pass_loss&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="n">paras</span><span class="p">[</span><span class="s">&#39;stop_loss&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">80</span>
+    <span class="c"># pass frequency: pass_freq*Fs/2 = 0.01*40/2 = 0.2Hz</span>
+    <span class="c"># stop frequency: stop_freq*Fs/2 = 0.1*40/2 = 2Hz</span>
+    <span class="c"># accordingly, walking frequency is above 1.5Hz, shaking frequency is also above 1.5Hz</span>
+    <span class="n">pf</span><span class="p">,</span> <span class="n">sf</span><span class="p">,</span> <span class="n">pg</span><span class="p">,</span> <span class="n">sg</span> <span class="o">=</span> <span class="p">(</span><span class="n">paras</span><span class="p">[</span><span class="s">&#39;pass_freq&#39;</span><span class="p">],</span> <span class="n">paras</span><span class="p">[</span><span class="s">&#39;stop_freq&#39;</span><span class="p">],</span> <span class="n">paras</span><span class="p">[</span><span class="s">&#39;pass_loss&#39;</span><span class="p">],</span> <span class="n">paras</span><span class="p">[</span><span class="s">&#39;stop_loss&#39;</span><span class="p">])</span>
+    <span class="n">ords</span><span class="p">,</span> <span class="n">wn</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">buttord</span><span class="p">(</span><span class="n">pf</span><span class="p">,</span> <span class="n">sf</span><span class="p">,</span> <span class="n">pg</span><span class="p">,</span> <span class="n">sg</span><span class="p">)</span>
+    <span class="n">b</span><span class="p">,</span><span class="n">a</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">butter</span><span class="p">(</span><span class="n">ords</span><span class="p">,</span> <span class="n">wn</span><span class="p">,</span> <span class="n">btype</span><span class="o">=</span><span class="s">&#39;low&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">raw_value_names</span><span class="p">:</span>
+      <span class="n">new_data</span><span class="p">[</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">lfilter</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">new_data</span><span class="p">[</span><span class="n">value</span><span class="p">])</span>
+  <span class="k">elif</span> <span class="n">filter_type</span> <span class="o">==</span> <span class="s">&#39;dcblock&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">paras</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+      <span class="n">paras</span><span class="p">[</span><span class="s">&#39;p&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.95</span>
+    <span class="c"># transfer function: H = 1 - z^-1/1 - p*z^-1</span>
+    <span class="c"># b = [1, -1]</span>
+    <span class="c"># a = [1, -p]</span>
+    <span class="c"># 0 &lt; p &lt; 1</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">paras</span><span class="p">[</span><span class="s">&#39;p&#39;</span><span class="p">]]</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">raw_value_names</span><span class="p">:</span>
+      <span class="n">new_data</span><span class="p">[</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">filtfilt</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">new_data</span><span class="p">[</span><span class="n">value</span><span class="p">])</span>
+  <span class="k">return</span> <span class="n">new_data</span>
+</div>
+<div class="viewcode-block" id="transform_raw"><a class="viewcode-back" href="../index.html#raw.transform_raw">[docs]</a><span class="k">def</span> <span class="nf">transform_raw</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">transform_type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">value_names</span><span class="o">=</span><span class="n">w_utils</span><span class="o">.</span><span class="n">raw_value_names</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;transform raw dataset into other measurement or space</span>
+
+<span class="sd">  Transform raw dataset into other measurement or space like orientation, posture</span>
+<span class="sd">  distance, frequency domain</span>
+
+<span class="sd">  Args:</span>
+<span class="sd">    raw_data: raw dataset to be transformed</span>
+<span class="sd">    transform_type: string to specify the transformation operation</span>
+<span class="sd">    value_names: raw dataset&#39;s value column names</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">    (new_values_names, new_data): transformed dataset&#39;s value column names, </span>
+<span class="sd">    transformed new dataset</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+
+  <span class="k">if</span> <span class="n">transform_type</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">w_utils</span><span class="o">.</span><span class="n">raw_value_names</span><span class="p">,</span> <span class="n">raw_data</span>
+  <span class="k">elif</span> <span class="n">transform_type</span> <span class="o">==</span> <span class="s">&#39;orientation&#39;</span><span class="p">:</span>
+    <span class="c"># normalize to 1g</span>
+    <span class="n">raw_data</span><span class="o">.</span><span class="n">rawx</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">rawx</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">rawx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">rawy</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">rawz</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">raw_data</span><span class="o">.</span><span class="n">rawy</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">rawy</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">rawx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">rawy</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">rawz</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">raw_data</span><span class="o">.</span><span class="n">rawz</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">rawz</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">rawx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">rawy</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">rawz</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c"># calculate orientations</span>
+    <span class="c"># pitch: yz, roll: xz, theta: xy</span>
+    <span class="n">pitch_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">rawx</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">rawy</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">rawz</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+    <span class="n">roll_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">rawy</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">rawx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">rawz</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+    <span class="n">theta_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">rawy</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">rawx</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span><span class="n">raw_data</span><span class="o">.</span><span class="n">rawz</span><span class="p">)</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+    <span class="n">new_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">value_names</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">new_data</span><span class="p">[</span><span class="s">&#39;pitch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pitch_data</span>
+    <span class="n">new_data</span><span class="p">[</span><span class="s">&#39;roll&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">roll_data</span>
+    <span class="n">new_data</span><span class="p">[</span><span class="s">&#39;theta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">theta_data</span>
+    <span class="n">new_values_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;pitch&#39;</span><span class="p">,</span><span class="s">&#39;roll&#39;</span><span class="p">,</span><span class="s">&#39;theta&#39;</span><span class="p">]</span>
+  <span class="k">elif</span> <span class="n">transform_type</span> <span class="o">==</span> <span class="s">&#39;magnitude&#39;</span><span class="p">:</span>
+    <span class="n">mag_data</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">rawx</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">rawy</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">rawz</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">new_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">value_names</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">new_data</span><span class="p">[</span><span class="s">&#39;magnitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mag_data</span>
+    <span class="n">new_values_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;magnitude&#39;</span><span class="p">]</span>
+  <span class="k">elif</span> <span class="n">transform_type</span> <span class="o">==</span> <span class="s">&#39;post-distance&#39;</span><span class="p">:</span>
+    <span class="n">xydistance</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">rawx</span> <span class="o">-</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">rawy</span><span class="p">)</span>
+    <span class="n">yzdistance</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">rawy</span> <span class="o">-</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">rawz</span><span class="p">)</span>
+    <span class="n">zxdistance</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">rawz</span> <span class="o">-</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">rawx</span><span class="p">)</span>
+    <span class="n">new_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">value_names</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">new_data</span><span class="p">[</span><span class="s">&#39;xypostdist&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xydistance</span>
+    <span class="n">new_data</span><span class="p">[</span><span class="s">&#39;yzpostdist&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">yzdistance</span>
+    <span class="n">new_data</span><span class="p">[</span><span class="s">&#39;zxpostdist&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">zxdistance</span>
+    <span class="n">new_values_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;xypostdist&#39;</span><span class="p">,</span><span class="s">&#39;yzpostdist&#39;</span><span class="p">,</span><span class="s">&#39;zxpostdist&#39;</span><span class="p">]</span>
+  <span class="k">elif</span> <span class="n">transform_type</span> <span class="o">==</span> <span class="s">&#39;fft&#39;</span><span class="p">:</span>
+    <span class="n">xfft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">rawx</span><span class="p">))</span>
+    <span class="n">yfft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">rawy</span><span class="p">))</span>
+    <span class="n">zfft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">scipy</span><span class="o">.</span><span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">rawz</span><span class="p">))</span>
+    <span class="n">new_data</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">value_names</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">new_data</span><span class="p">[</span><span class="s">&#39;xfft&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">xfft</span>
+    <span class="n">new_data</span><span class="p">[</span><span class="s">&#39;yfft&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">yfft</span>
+    <span class="n">new_data</span><span class="p">[</span><span class="s">&#39;zfft&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">zfft</span>
+    <span class="n">new_values_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;xfft&#39;</span><span class="p">,</span><span class="s">&#39;yfft&#39;</span><span class="p">,</span><span class="s">&#39;zfft&#39;</span><span class="p">]</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">new_values_names</span><span class="p">,</span> <span class="n">new_data</span><span class="p">)</span>
+</div>
+<span class="k">def</span> <span class="nf">unit_tests</span><span class="p">(</span><span class="n">testfile_raw</span><span class="p">,</span> <span class="n">testfile_annotation</span><span class="p">):</span>
+  <span class="n">consol_raw</span> <span class="o">=</span> <span class="n">w_utils</span><span class="o">.</span><span class="n">raw_csv_consolidator</span><span class="p">([</span><span class="n">testfile_raw</span><span class="p">,],</span><span class="n">sessions</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,])</span>
+  <span class="n">consol_annotation</span> <span class="o">=</span> <span class="n">s_annotation</span><span class="o">.</span><span class="n">annotation_csv_consolidator</span><span class="p">([</span><span class="n">testfile_annotation</span><span class="p">,],</span><span class="n">time_offsets</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,],</span><span class="n">sessions</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,])</span>
+  <span class="n">raw_data</span> <span class="o">=</span> <span class="n">preprocess_raw</span><span class="p">(</span><span class="n">consol_raw</span><span class="p">,</span> <span class="n">consol_annotation</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s">&#39;session&#39;</span><span class="p">)</span>
+  <span class="n">new_value_names</span><span class="p">,</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">transform_raw</span><span class="p">(</span><span class="n">raw_data</span><span class="p">)</span>
+  <span class="n">lbound</span><span class="p">,</span> <span class="n">rbound</span> <span class="o">=</span> <span class="n">w_utils</span><span class="o">.</span><span class="n">generate_random_bounds</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="n">timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
+  <span class="n">random_raw</span> <span class="o">=</span> <span class="n">select_raw_by_ts</span><span class="p">(</span><span class="n">new_data</span><span class="p">,</span> <span class="n">lbound</span><span class="p">,</span> <span class="n">rbound</span><span class="p">)</span>
+  <span class="n">random_annotation</span> <span class="o">=</span> <span class="n">s_annotation</span><span class="o">.</span><span class="n">select_annotation_by_ts</span><span class="p">(</span><span class="n">consol_annotation</span><span class="p">,</span> <span class="n">lbound</span><span class="p">,</span> <span class="n">rbound</span><span class="p">)</span>
+
+  <span class="c"># s_viewer.get_simple_raw_plot(random_raw, labels=random_annotation, subplots=False)</span>
+  <span class="n">lowpass_raw</span> <span class="o">=</span> <span class="n">filter_raw</span><span class="p">(</span><span class="n">random_raw</span><span class="p">,</span> <span class="n">new_value_names</span><span class="p">,</span> <span class="n">filter_type</span><span class="o">=</span><span class="s">&#39;dcblock&#39;</span><span class="p">)</span>
+  <span class="c"># new_value_names, random_raw = transform_raw(random_raw, value_names=new_value_names, transform=&#39;fft&#39;)</span>
+
+  <span class="n">s_viewer</span><span class="o">.</span><span class="n">get_multistep_view_plot</span><span class="p">([</span><span class="n">random_raw</span><span class="p">,</span> <span class="n">lowpass_raw</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="n">random_annotation</span><span class="p">,</span> <span class="n">subplots</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+  <span class="c"># s_viewer.get_simple_raw_plot(random_raw, labels=random_annotation, subplots=False)</span>
+  <span class="c"># pyplot.show()</span>
+  <span class="c"># random_raw = scale_raw(random_raw,4,-4)</span>
+  <span class="c"># random_raw = random_raw.set_index([utils.raw_ts_name, &#39;session&#39;])</span>
+  <span class="c"># random_raw.plot()</span>
+  <span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+  <span class="kn">import</span> <span class="nn">cProfile</span>
+  <span class="n">pr</span> <span class="o">=</span> <span class="n">cProfile</span><span class="o">.</span><span class="n">Profile</span><span class="p">()</span>
+  <span class="n">pr</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+  <span class="n">testfile_raw</span> <span class="o">=</span> <span class="s">&quot;../../test.raw.csv&quot;</span>
+  <span class="n">testfile_annotation</span> <span class="o">=</span> <span class="s">&quot;../../test.annotation.csv&quot;</span>
+  <span class="n">unit_tests</span><span class="p">(</span><span class="n">testfile_raw</span><span class="p">,</span> <span class="n">testfile_annotation</span><span class="p">)</span>
+  <span class="n">pr</span><span class="o">.</span><span class="n">disable</span><span class="p">()</span>
+  <span class="n">pr</span><span class="o">.</span><span class="n">create_stats</span><span class="p">()</span>
+  <span class="n">pr</span><span class="o">.</span><span class="n">print_stats</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">smdt 0.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Qu Tang.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>
