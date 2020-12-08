@@ -27,11 +27,11 @@ Please cite the paper in any presentations or publications if using this dataset
         * posture_example_plots
         * puffing_example_plots
 
-* `data/original` contains raw sensor data and annotation files. These data may be downloaded [here]().
-* `data/featureset` contains all generated feature sets used by the detection model. These data may be downloaded [here]().
+* `data/original` contains raw sensor data and annotation files. These data may be downloaded [here](https://github.com/qutang/tang_pervhealth_14/releases/download/Datasets/original.tar.gz).
+* `data/featureset` contains all generated feature sets used by the detection model. These data may be downloaded [here](https://github.com/qutang/tang_pervhealth_14/releases/download/Datasets/featureset.tar.gz).
   
   Note that this folder will not normally be included into the version control repository, as they are intermediate results and can be very large size.
-* `data/pkl` contains all binary intermediate files that can be loaded with the python serialization package pickle. These data may be downloaded [here]().
+* `data/pkl` contains all binary intermediate files that can be loaded with the python serialization package pickle. These data may be downloaded [here](https://github.com/qutang/tang_pervhealth_14/releases/download/Datasets/pkl.tar.gz).
   
   Note that these intermediate files are featureset files in binary format, with 50% less size). They are not commited to the version control system.
 
@@ -148,6 +148,28 @@ There will be a header row with all necessary or unnecessary columns, you can ch
 ## Reproduce the results in the publication
 
 Coming soon...
+
+## Demo: the complexity of smoking behavior in real world
+
+These videos are shot to show the real world cases of smoking behavior. Videos and corresponding accelerometer signal are put side by side to give a direct impression of how movement could affect and intervene the underlying signal.
+
+**Separable concurrent activities**
+
+In this video, tester was asked to perform smoking while walking. As you can see from the video, signal was shown to contain additive components from both hand movement (puffing) and body movement (walking). These two components are independent and additive because they are conducted by different body components. This gives us some inspiration when dealing with concurrent activities.
+
+[![Smoking_demo_1](https://img.youtube.com/vi/0vuninozmh0/0.jpg)](https://youtu.be/0vuninozmh0)
+
+**Ambiguous hand gestures**
+
+In this video, tester was asked to perform puffing, eating and drinking during smoking in a natural way. The signal contains several ups and downs but none of them shows distinguish characteristics only for puffing. In fact, these activites all belong to hand-to-mouse gestures. The differences between these activities are quite minor from the view of the signal. This exposes one of the chanllenges in activity recognition, which is to classify similar movements.
+
+[![Smoking_demo_2](https://img.youtube.com/vi/9ariksf8jAk/0.jpg)](https://youtu.be/9ariksf8jAk)
+
+**A comprehensive episode**
+
+This video shows a comprehensive episode of natural smoking behavior including a series of complex activities ongoing at the same time. Signals, as shown on the right side, appear to be quite intervened and complex and lack of visible distinguish characteristics for each type of activities. The activites are changing relatively fast in time, thus makes them even more difficult to be captured and recognized in real time.
+
+[![Smoking_demo_3](https://img.youtube.com/vi/FjhBPKOZ1a0/0.jpg)](https://youtu.be/FjhBPKOZ1a0)
 
 ## Contact us
 
