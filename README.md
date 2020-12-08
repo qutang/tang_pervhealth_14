@@ -81,7 +81,7 @@ The accelerometer we used is Actigraph GT3X, which has a dynamic range of ±4g a
 Annotation file has standard csv format with header describes the meaning of each column.
 
 | Column name | Meaning |
-| :------------------ | :------------------- |
+| :------------------ | :------ |
 | STARTTIME | start time of current annotation |
 | ENDTIME | end time of current annotation |
 | COLOR | unused |
@@ -89,11 +89,11 @@ Annotation file has standard csv format with header describes the meaning of eac
 | activity | annotation for subject activity |
 | smoking | annotation for smoking status, could be either smoking or not-smoking |
 | puffing | annotation for puffing status, could be no-puff, left-puff or right-puff |
-| puff index | the index (start from 0) of current puff, if two annotation has the same puff index, that means they actually belong to the same puff. If it’s a no-puff annotation, the index will be -1. |
-| prototypical? | A binary value (0 or 1) indicates whether this puff is prototypical puff. If it’s no-puff, the value will be -1. |
+| puff index | the index (start from 0) of current puff, if two annotation has the same puff index, that means they actually belong to the same puff. If it’s a no-puff annotation, the index will be -1 |
+| prototypical? | A binary value (0 or 1) indicates whether this puff is prototypical puff. If it’s no-puff, the value will be -1 |
 | potential error? | A binary value indicates whether this annotation might be wrong due to human error |
 | note | additional comments on this annotation |
-| link | filename of the corresponding puff example plot in the `supplements/puffing_example_plots` folder |
+| link | filename of the corresponding puff example plot in the `puffing_example_plots` folder |
 
 ## Feature set data format
 
@@ -157,19 +157,22 @@ These videos are shot to show the real world cases of smoking behavior. Videos a
 
 In this video, tester was asked to perform smoking while walking. As you can see from the video, signal was shown to contain additive components from both hand movement (puffing) and body movement (walking). These two components are independent and additive because they are conducted by different body components. This gives us some inspiration when dealing with concurrent activities.
 
-[![Smoking_demo_1](https://img.youtube.com/vi/0vuninozmh0/0.jpg)](https://youtu.be/0vuninozmh0)
+[![Smoking_demo_1](https://img.youtube.com/vi/0vuninozmh0/0.jpg)](https://youtu.be/0vuninozmh0)  
+*Click image to view the video*
 
 **Ambiguous hand gestures**
 
 In this video, tester was asked to perform puffing, eating and drinking during smoking in a natural way. The signal contains several ups and downs but none of them shows distinguish characteristics only for puffing. In fact, these activites all belong to hand-to-mouse gestures. The differences between these activities are quite minor from the view of the signal. This exposes one of the chanllenges in activity recognition, which is to classify similar movements.
 
-[![Smoking_demo_2](https://img.youtube.com/vi/9ariksf8jAk/0.jpg)](https://youtu.be/9ariksf8jAk)
+[![Smoking_demo_2](https://img.youtube.com/vi/9ariksf8jAk/0.jpg)](https://youtu.be/9ariksf8jAk)  
+*Click image to view the video*
 
 **A comprehensive episode**
 
 This video shows a comprehensive episode of natural smoking behavior including a series of complex activities ongoing at the same time. Signals, as shown on the right side, appear to be quite intervened and complex and lack of visible distinguish characteristics for each type of activities. The activites are changing relatively fast in time, thus makes them even more difficult to be captured and recognized in real time.
 
-[![Smoking_demo_3](https://img.youtube.com/vi/FjhBPKOZ1a0/0.jpg)](https://youtu.be/FjhBPKOZ1a0)
+[![Smoking_demo_3](https://img.youtube.com/vi/FjhBPKOZ1a0/0.jpg)](https://youtu.be/FjhBPKOZ1a0)  
+*Click image to view the video*
 
 ## Contact us
 
