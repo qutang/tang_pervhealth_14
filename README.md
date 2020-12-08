@@ -81,7 +81,7 @@ The accelerometer we used is Actigraph GT3X, which has a dynamic range of ±4g a
 Annotation file has standard csv format with header describes the meaning of each column.
 
 | Column name | Meaning |
-| :------------- | :----------: |
+| :------------------ | :------------------- |
 | STARTTIME | start time of current annotation |
 | ENDTIME | end time of current annotation |
 | COLOR | unused |
